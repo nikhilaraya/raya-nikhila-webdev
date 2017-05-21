@@ -1,7 +1,112 @@
-input.form-control {
+input.form-control,
+textarea.form-control,
+select.form-control {
     margin-bottom: 5px;
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif;
+}
+
+.container-fluid>.navbar-header{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.fixed-top-header-arrow{
+    font-size: 12px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.fixed-top-header{
+    padding-left: 0px;
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color: white;
+}
+.remove-hover-heading{
+    color: white !important;
+}
+.glyphicon-color{
+    color: white;
+}
+.adjust-padding-header{
+    padding-left: 0px;
+}
+
+.navbar-default .navbar-link:hover {
+    color: white ;
+}
+.active {
+    background-color: black !important;
+}
+.footer-width{
+    width: 100%;
+}
+.navbar-default {
+    background-color: black;
+    border-color: black;
+}
+
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-default .navbar-link {
+    color: white;
+}
+
+.navbar.navbar-default a {
+    color: #ffffff;
+}
+
+.wd-widget {
+    margin-bottom: 10px;
+}
+
+.wd-widget > img {
+    width: 100%;
+}
+
+.wd-widget .wd-widget-toolbar {
+    position: absolute;
+    right: 15px;
+    background: white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
+
+.toolbar-youtube-position{
+    top: 0px;
+    right: 0px !important;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
