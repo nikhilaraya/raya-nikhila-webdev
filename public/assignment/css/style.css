@@ -32,6 +32,9 @@ body {
     line-height: 20px;
     color: white;
 }
+.padding-left-header{
+    padding-left: 15px !important;
+}
 .remove-hover-heading{
     color: white !important;
 }
