@@ -1,0 +1,61 @@
+<link href="css/style.css" rel="stylesheet"/>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-text pull-left fixed-top-header-arrow">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+            </a>
+            <span class="fixed-top-header">Widget Edit</span>
+            <p class="navbar-text pull-right fixed-top-header-arrow">
+                <a ng-click="model.editHeading(model.name,model.text,model.size)" class="navbar-link">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input class="form-control"
+           ng-model="model.name"
+           placeholder="facebook"
+           value="top heading"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input class="form-control"
+           placeholder="facebook"
+           ng-model="model.text"
+           value="US Senate Reaches Compromise"
+           id="text"/>
+
+    <label for="size">Size</label>
+    <select id="size" class="form-control" ng-model="model.size">
+        <option>1 (X-Large)</option>
+        <option>2 (Larger)</option>
+        <option>3 (Large)</option>
+        <option>4 (Medium)</option>
+        <option>5 (Small)</option>
+        <option>6 (Smallest)</option>
+    </select>
+
+    <a ng-click="model.deleteHeading()" class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right fixed-top-header-arrow">
+                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

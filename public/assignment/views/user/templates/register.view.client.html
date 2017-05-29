@@ -1,0 +1,46 @@
+<link href="css/style.css" rel="stylesheet"/>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <span class="fixed-top-header adjust-padding-header">Register</span>
+
+        </div>
+    </div>
+</nav>
+    <div class="container-fluid">
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+        <label for="username">Username</label>
+        <input type="text"
+               ng-model="username"
+               class="form-control"
+               id="username"
+               placeholder="Bob123"/>
+        <label for="password">Password</label>
+        <input type="password"
+               ng-model="password"
+               id="password"
+               class="form-control"
+               placeholder="Qwerty1234"/>
+        <label for="reenter password">Re-enter Password</label>
+        <input type="password"
+               ng-model="password2"
+               class="form-control"
+               id="reenter password"
+               placeholder="Qwerty1234"/>
+        <a class="btn btn-primary btn-block"
+           ng-click="model.register(username, password, password2)">Register</a>
+        <a class="btn btn-danger  btn-block"
+           href="#!/login">Cancel</a>
+    </div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-right fixed-top-header-arrow">
+
+            </p>
+        </div>
+    </div>
+</nav>
