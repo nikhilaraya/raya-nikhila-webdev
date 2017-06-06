@@ -11,12 +11,26 @@
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
         model.widgetId = $routeParams['widgetId'];
-        model.widgets = widgetService.findWidgetByPageId(model.pageId);
+
         model.trust = trust;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         model.widgetUrl = widgetUrl;
 
+        widgetService
+            .findWidgetByPageId(model.userId,model.websiteId,model.pageId)
+            .then(renderWidgets);
+
+        function renderWidgets(widgets) {
+             console.log(widgets);
+            model.widgets = widgets;
+            for(var w in widgets)
+            {
+                console.log(widgets[w].text+widgets[w].pageId);
+            }
+        }
+
         function widgetUrl(widget) {
+            console.log("in widget url"+widget.widgetType+widget.size);
             var url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'.view.client.html';
             return url;
         }

@@ -17,13 +17,19 @@
         model.createYoutube =createYoutube;
 
         function createHeading() {
+
             var heading = {
                 widgetType:"HEADING",
                 size:0,
                 text:""
             };
-            var headingWidget = widgetService.createWidget(model.pageId,heading);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+headingWidget._id);
+
+            console.log(heading);
+            widgetService
+                .createWidget(model.userId,model.websiteId,model.pageId,heading)
+                .then(function (headingWidget) {
+                $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+headingWidget._id);
+            })
         }
 
         function createHtml() {
@@ -31,8 +37,11 @@
                 widgetType:"HTML",
                 text:""
             };
-            var htmlNewWidget = widgetService.createWidget(model.pageId,htmlWidget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+htmlNewWidget._id);
+            widgetService
+                .createWidget(model.userId,model.websiteId,model.pageId,htmlWidget)
+                .then(function (htmlNewWidget) {
+                $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+htmlNewWidget._id);
+            })
         }
 
         function createYoutube() {
@@ -41,8 +50,11 @@
                 "width": "100%",
                 "url": ""
             };
-            var youTubeWidget = widgetService.createWidget(model.pageId,youtubeWidget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+youTubeWidget._id);
+            widgetService
+                .createWidget(model.userId,model.websiteId,model.pageId,youtubeWidget)
+                .then(function (youTubeWidget) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+youTubeWidget._id);
+                })
         }
 
         function createImage() {
@@ -51,8 +63,11 @@
                 "width": "100%",
                 "url": ""
             };
-            var imageNewWidget = widgetService.createWidget(model.pageId,imageWidget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+imageNewWidget._id);
+            widgetService
+                .createWidget(model.userId,model.websiteId,model.pageId,imageWidget)
+                .then(function (imageNewWidget) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+imageNewWidget._id);
+                })
         }
 
 

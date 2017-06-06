@@ -8,7 +8,7 @@
             </a>
             <span class="fixed-top-header">Widget Edit</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a ng-model="model.updateYoutube()" class="navbar-link">
+                <a ng-click="model.editYoutube()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -31,7 +31,6 @@
     <label for="url">URL</label>
     <input class="form-control"
            ng-model="model.url"
-           value="https://www.youtube.com/watch?v=PAkxgIKJxRE"
            id="url"/>
 
     <label for="width">Width</label>

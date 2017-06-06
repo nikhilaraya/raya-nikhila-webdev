@@ -8,7 +8,7 @@
             </a>
             <span class="fixed-top-header">Widget Edit</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a ng-click="model.editHeading(model.name,model.text,model.size)" class="navbar-link">
+                <a ng-click="model.editHeading()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -17,29 +17,26 @@
 </nav>
 
 <div class="container-fluid">
-
     <label for="name">Name</label>
     <input class="form-control"
            ng-model="model.name"
            placeholder="facebook"
-           value="top heading"
            id="name"/>
 
     <label for="text">Text</label>
     <input class="form-control"
            placeholder="facebook"
            ng-model="model.text"
-           value="US Senate Reaches Compromise"
            id="text"/>
 
     <label for="size">Size</label>
     <select id="size" class="form-control" ng-model="model.size">
-        <option>1 (X-Large)</option>
-        <option>2 (Larger)</option>
-        <option>3 (Large)</option>
-        <option>4 (Medium)</option>
-        <option>5 (Small)</option>
-        <option>6 (Smallest)</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
     </select>
 
     <a ng-click="model.deleteHeading()" class="btn btn-block btn-danger">Delete</a>

@@ -14,19 +14,37 @@
         model.updateWebsite = updateWebsite;
 
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            websiteService
+                .findAllWebsitesForUser(model.userId)
+                .then(renderWebsites);
+
+            function renderWebsites(websites) {
+                model.websites = websites;
+            }
+
+            websiteService
+                .findWebsiteById(model.websiteId,model.userId)
+                .then(renderWebsiteById);
+
+            function renderWebsiteById(website) {
+                model.website = website;
+            }
+            //model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            //model.website = websiteService.findWebsiteById(model.websiteId);
         }
         init();
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/'+model.userId+'/website');
+            websiteService.deleteWebsite(model.userId,websiteId).then(function () {
+                $location.url('/user/'+model.userId+'/website');
+            });
+
         }
 
         function updateWebsite(websiteId,website) {
-            websiteService.updateWebsite(websiteId,website);
-            $location.url('/user/'+model.userId+'/website');
+            websiteService.updateWebsite(websiteId,website).then(function () {
+                $location.url('/user/'+model.userId+'/website');
+            });
         }
     }
 })();
