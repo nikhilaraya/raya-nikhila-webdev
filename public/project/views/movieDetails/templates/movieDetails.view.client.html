@@ -1,0 +1,57 @@
+<div class="container-fluid top-spacing bottom-spacing">
+    <h1>
+        {{model.movie.title}}
+    </h1>
+
+    <br>
+    <br>
+
+    <div class="container-fluid">
+
+        <div class="w3-container w3-row">
+
+            <div class="w3-twothird">
+                <div class="set-size">
+                    <strong class="large-size">   Rated: </strong> &nbsp;&nbsp; {{model.movie.vote_average}}
+                </div>
+                <p></p>
+                <div class="set-size">
+                    <strong class="large-size">   Runtime(minutes): </strong> &nbsp;&nbsp; {{model.movie.runtime}}
+                </div>
+                <p></p>
+
+                <div class="set-size">
+                    <strong class="large-size">  Genre:  </strong> &nbsp;
+                    <span ng-repeat="genre in model.genres">
+                 {{genre.name}} ,
+            </span>
+                </div>
+                <p></p>
+                <div class="set-size">
+                    <strong class="large-size">   Released: </strong> &nbsp;&nbsp; {{model.movie.release_date}}
+                </div>
+                <p></p>
+
+
+            </div>
+
+
+        </div>
+
+        <br>
+        <br>
+        <div class="w3-container w3-row white-color set-size">
+            <strong class="large-size">   Plot:</strong> <p></p> {{model.movie.overview}}
+        </div>
+                <strong class="large-size">CREW</strong>
+                <div  class="set-size" ng-repeat="crew in model.movie.credits.crew">
+                     &nbsp;&nbsp; {{crew.name}}
+                </div>
+                <p></p>
+
+
+
+
+
+    </div>
+</div>

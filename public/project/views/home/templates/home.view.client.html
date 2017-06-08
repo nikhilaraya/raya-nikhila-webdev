@@ -1,0 +1,49 @@
+<div>
+        <section>
+            <div class="container container-fluid">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+                        <div class="text-center">
+                            <div class="container-fluid">
+                                <p></p>
+                                <br>
+                                <div class="input-group">
+                                    <input ng-model="model.title"
+                                           type="text"
+                                           class="form-control search-input"
+                                           placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button ng-click="model.searchMoviesByTitle(model.title)"
+                                                class="btn btn-default search-button"
+                                                type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center color-elements">
+            <h2  ng-if="!model.movieTitle">Most Popular Movies Over the Internet</h2>
+            <h2 ng-if="model.movieTitle">Search Results</h2>
+        </div>
+        <br>
+        <div class="container container-fluid ">
+            <div class="col-xs-offset-2 col-xs-10 col-lg-offset-0 col-lg-5 col pupular-div popular-view"
+                 ng-repeat="movie in model.pMovies">
+                <div>
+                    <img class="pop-img img-size" ng-src="http://image.tmdb.org/t/p/original{{movie.poster_path}}"/>
+                </div>
+                <p></p>
+                <div class="home-popular-title">
+                    <a href="#/movieDetails/{{movie.id}}">{{movie.title}}</a><br>
+                    <a> <strong>Release Date:</strong> {{movie.release_date}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
