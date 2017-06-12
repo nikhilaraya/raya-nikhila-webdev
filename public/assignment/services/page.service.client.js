@@ -52,11 +52,11 @@
                 });
             // var results = [];
             //
-            // for(var v in pages) {
-            //     if(pages[v].websiteId === websiteId) {
-            //         pages[v].created = new Date();
-            //         pages[v].accessed = new Date();
-            //         results.push(pages[v]);
+            // for(var v in page) {
+            //     if(page[v].websiteId === websiteId) {
+            //         page[v].created = new Date();
+            //         page[v].accessed = new Date();
+            //         results.push(page[v]);
             //     }
             // }
             //

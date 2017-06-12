@@ -19,7 +19,7 @@
         function renderWidget(widget) {
 
             model.widget = widget;
-            model.name = model.widget.widgetType;
+            model.name = model.widget.type;
             model.text = model.widget.text;
             model.url = model.widget.url;
             model.size = model.widget.size;
@@ -71,7 +71,7 @@
             console.log("editedHeading enter");
             var headingWidget = {
             _id: model.widget._id,
-            widgetType: model.name,
+                type: model.name,
                 pageId: model.widget.pageId,
                 text:model.text,
                 size:model.size
@@ -89,7 +89,7 @@
         function editImage() {
             var imageWidget = {
                 _id: model.widget._id,
-                widgetType: model.name,
+                type: model.name,
                 pageId: model.widget.pageId,
                 url:model.url,
                 width:model.width
@@ -105,7 +105,7 @@
         function editYoutube() {
             var youtubeWidget = {
                 _id: model.widget._id,
-                widgetType: model.name,
+                type: model.name,
                 pageId: model.widget.pageId,
                 url:model.url,
                 width:model.width

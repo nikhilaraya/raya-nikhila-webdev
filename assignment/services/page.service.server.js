@@ -1,4 +1,6 @@
 const app = require('../../express');
+var pageModel = require('../models/page/page.model.server');
+var websiteModel = require('../models/website/website.model.server');
 
 var pages =
     [
@@ -14,53 +16,48 @@ app.delete ('/api/assignment/user/:userId/website/:websiteId/page/:pageId', dele
 app.put ('/api/assignment/user/:userId/website/:websiteId/page/:pageId', updatePage);
 
 function findPagesByWebsiteId(req, res) {
-    var results = [];
-
-    for(var p in pages) {
-        if(pages[p].websiteId === req.params.websiteId) {
-            results.push(pages[p]);
-        }
-    }
-    res.json(results);
+    pageModel
+        .findAllPagesForWebsite(req.params.websiteId)
+        .then(function (pages) {
+            res.json(pages);
+        })
 }
 
 function createPage(req, res) {
     var page = req.body;
-    page._id = (new Date()).getTime() + "";
-    pages.push(page);
-    res.json(page);
+    var websiteId = req.params.websiteId;
+    pageModel
+        .createPageForWebsite(websiteId, page)
+        .then(function (page) {
+            res.json(page);
+        });
 }
 
 function findPageById(req,res) {
-    var pageId = req.params.pageId;
-    for (var p in pages) {
-        if (pages[p]._id === pageId) {
-            res.send(pages[p]);
-            return;
-        }
-    }
+    pageModel
+        .findPageById(req.params.pageId)
+        .then(function (page) {
+            res.json(page);
+        })
 }
 
 function deletePage(req,res) {
     var pageId = req.params.pageId;
-    for(var p in pages) {
-        if(pages[p]._id === pageId) {
-            pages.splice(p, 1);
+    var websiteId = req.params.websiteId;
+    return pageModel
+        .deletePageFromWebsite(websiteId,pageId)
+        .then(function (page) {
             res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+        },function (err) {
+            res.sendStatus(404);
+        });
 }
 
 function updatePage(req,res) {
-
     var page = req.body;
-    for(var p in pages) {
-        if(pages[p]._id === page._id) {
-            pages[p] = page;
-            res.sendStatus(200);
-
-        }
-    }
+    pageModel
+        .updatePage(req.params.pageId, page)
+        .then(function (status) {
+            res.send(status);
+        });
 }

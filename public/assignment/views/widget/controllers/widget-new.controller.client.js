@@ -17,14 +17,13 @@
         model.createYoutube =createYoutube;
 
         function createHeading() {
-
+            console.log("in create heading");
             var heading = {
-                widgetType:"HEADING",
+                type:"HEADING",
                 size:0,
                 text:""
             };
 
-            console.log(heading);
             widgetService
                 .createWidget(model.userId,model.websiteId,model.pageId,heading)
                 .then(function (headingWidget) {
@@ -34,7 +33,7 @@
 
         function createHtml() {
             var htmlWidget = {
-                widgetType:"HTML",
+                type:"HTML",
                 text:""
             };
             widgetService
@@ -46,7 +45,7 @@
 
         function createYoutube() {
             var youtubeWidget = {
-                widgetType:"YOUTUBE",
+                type:"YOUTUBE",
                 "width": "100%",
                 "url": ""
             };
@@ -59,7 +58,7 @@
 
         function createImage() {
             var imageWidget = {
-                widgetType:"IMAGE",
+                type:"IMAGE",
                 "width": "100%",
                 "url": ""
             };

@@ -23,7 +23,6 @@
         
         function createWidget(userId,websiteId,pageId,widget) {
             var url = "/api/assignment/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
-            console.log(url);
             return $http.post(url, widget)
                 .then(function (response) {
                     return response.data;

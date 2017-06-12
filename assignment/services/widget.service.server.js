@@ -1,4 +1,6 @@
 const app = require('../../express');
+var widgetModel = require('../models/widget/widget.model.server');
+var pageModel = require('../models/page/page.model.server');
 
 var widgets =
     [
@@ -72,63 +74,54 @@ function sortingWidgets(req,res) {
 
 function findWidgetByPageId(req,res) {
      var pageId = req.params.pageId;
-
-     var results = [];
-     for(var v in widgets) {
-       if(widgets[v].pageId === pageId) {
-           console.log(widgets[v]);
-           results.push(widgets[v]);
-      }
-  }
-  //console.log(widgets);
-  res.json(results);
+    widgetModel
+        .findAllWidgetsForPage(pageId)
+        .then(function (widgets) {
+            res.json(widgets);
+        })
 }
 
 function findWidgetById(req,res) {
     var widgetId = req.params.widgetId;
-    for (var w in widgets) {
-        if (widgets[w]._id === widgetId) {
-            res.send(widgets[w]);
-            return;
-        }
-    }
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            console.log(widget._id);
+            res.json(widget);
+        })
 }
 
 function createWidget(req,res) {
     var widget = req.body;
-    widget._id = (new Date()).getTime() + "";
-    widget.pageId = req.params.pageId;
-    //console.log(widget);
-    widgets.push(widget);
-    res.json(widget);
+    var pageId = req.params.pageId;
+    widgetModel
+        .createWidgetForPage(pageId, widget)
+        .then(function (widget) {
+            console.log("in server service create"+widget._id);
+            res.json(widget);
+        });
 }
 
 function deleteWidget(req,res) {
-    //console.log("in delete widget");
+    var pageId = req.params.pageId;
     var widgetId = req.params.widgetId;
-    for(var w in widgets) {
-        if(widgets[w]._id === widgetId) {
-            widgets.splice(w, 1);
+    return widgetModel
+        .deleteWidgetFromPage(pageId,widgetId)
+        .then(function (widget) {
             res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+        },function (err) {
+            res.sendStatus(404);
+        });
 }
 
 function updateWidget(req,res) {
-    console.log("in server of update")
+
     var widget = req.body;
-    console.log(widget._id);
-    for(var w in widgets) {
-        if(widgets[w]._id === widget._id) {
-            widgets[w] = widget;
-            console.log(widget);
-            //console.log(widgets);
-            res.sendStatus(200);
-            return;
-        }
-    }
+    widgetModel
+        .updateWidget(req.params.widgetId,widget)
+        .then(function (status) {
+            res.send(status);
+        });
 }
 
 
@@ -154,13 +147,13 @@ function updateWidget(req,res) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        for (var w in widgets) {
-            if (widgets[w]._id === widgetId) {
-                widget = widgets[w];
-            }
-        }
-        widget.url = '/assignment/uploads/' + filename;
-        var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-        res.redirect(callbackUrl);
+        var widget = null;
+        var newW={url:'/assignment/uploads/' + filename};
+        widgetModel
+            .updateWidget(widgetId,newW)
+            .then(function (status) {
+            var callbackUrl   = "/assignment/#!/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+            res.redirect(callbackUrl);
+        })
 
 }
