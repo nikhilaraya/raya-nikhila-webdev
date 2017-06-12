@@ -17,13 +17,16 @@
             .then(renderWidget);
 
         function renderWidget(widget) {
-
+            console.log(widget.type);
             model.widget = widget;
             model.name = model.widget.type;
             model.text = model.widget.text;
             model.url = model.widget.url;
             model.size = model.widget.size;
             model.width = model.widget.width;
+            model.rows = model.widget.rows;
+            model.placeholder = model.widget.placeholder;
+            model.formatted = model.widget.formatted;
         }
 
         // model.name = model.widget.widgetType;
@@ -38,7 +41,9 @@
         model.deleteHeading = deleteHeading;
         model.deleteImage = deleteImage;
         model.deleteYoutube = deleteYoutube;
-
+        model.editHtml = editHtml;
+        model.deleteHTML = deleteHTML;
+        model.editText = editText;
 
 
         function deleteHeading() {
@@ -64,11 +69,17 @@
                 .then(function () {
                 $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
             })
-
+        }
+        
+        function deleteHTML() {
+            widgetService
+                .deleteWidget(model.userId,model.websiteId,model.pageId,model.widgetId)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+                })
         }
 
         function editHeading() {
-            console.log("editedHeading enter");
             var headingWidget = {
             _id: model.widget._id,
                 type: model.name,
@@ -76,14 +87,39 @@
                 text:model.text,
                 size:model.size
             };
-            console.log("edited"+headingWidget.text);
             widgetService
                 .updateWidget(model.userId,model.websiteId,model.pageId,model.widgetId,headingWidget)
                 .then(function () {
                 $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
             })
+        }
 
+        function editHtml() {
+            var htmlWidget = {
+                _id: model.widget._id,
+                pageId: model.widget.pageId,
+                text: model.text
+            };
+            widgetService.updateWidget(model.userId,model.websiteId,model.pageId,model.widgetId,htmlWidget)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+                })
+        }
 
+        function editText() {
+            console.log(model.placeholder);
+        var textWid= {
+            _id: model.widget._id,
+            type:"TEXT",
+            rows: model.rows,
+            placeholder: model.placeholder,
+            formatted: model.formatted,
+            text: model.text
+        };
+            widgetService.updateWidget(model.userId,model.websiteId,model.pageId,model.widgetId,textWid)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+                })
         }
 
         function editImage() {

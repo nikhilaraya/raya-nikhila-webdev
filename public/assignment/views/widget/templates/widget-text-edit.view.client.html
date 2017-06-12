@@ -8,7 +8,7 @@
             </a>
             <span class="fixed-top-header">Widget Edit</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a ng-click="model.editHtml()" class="navbar-link">
+                <a ng-click="model.editText()" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -17,14 +17,15 @@
 </nav>
 
 <div class="container-fluid">
-<div ng-model="model.text"
-     text-angular
-     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
-        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-        ['indent','outdent'],['html']]">
-</div>
-
-    <a class="btn btn-block btn-danger" ng-click="model.deleteHTML()">Delete</a>
+Text
+<input ng-model="model.text" class="form-control"/>
+Rows
+<input ng-model="model.rows" class="form-control" type="number"/>
+Placeholder
+<input ng-model="model.placeholder" class="form-control"/>
+Formatted
+<input ng-model="model.formatted" type="checkbox"/>
+    <a ng-click="model.deleteHeading()" class="btn btn-block btn-danger">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

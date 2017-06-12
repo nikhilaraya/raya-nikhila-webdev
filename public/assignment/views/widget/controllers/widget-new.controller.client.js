@@ -15,6 +15,7 @@
         model.createHtml = createHtml;
         model.createImage = createImage;
         model.createYoutube =createYoutube;
+        model.createText = createText;
 
         function createHeading() {
             console.log("in create heading");
@@ -29,6 +30,23 @@
                 .then(function (headingWidget) {
                 $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+headingWidget._id);
             })
+        }
+        function createText() {
+            console.log("in create text");
+            var textWid= {
+                type:"TEXT",
+                rows: 0,
+                placeholder:"",
+                formatted: false,
+                size:0,
+                text:""
+            };
+
+            widgetService
+                .createWidget(model.userId,model.websiteId,model.pageId,textWid)
+                .then(function (textWidget) {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget/'+textWidget._id);
+                })
         }
 
         function createHtml() {

@@ -9,7 +9,9 @@ body {
     padding-bottom: 60px;
     font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif;
 }
-
+.toolbar-width{
+    width:97%;
+}
 .container-fluid>.navbar-header{
     margin-left: 0px;
     margin-right: 0px;
