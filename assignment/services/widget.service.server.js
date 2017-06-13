@@ -24,9 +24,9 @@ app.get("/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:wi
 app.post("/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget",createWidget);
 app.delete("/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId",deleteWidget);
 app.put ("/api/assignment/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", updateWidget);
-app.put("/api/assignment/page/:pageId/widget", sortingWidgets);
+app.put("/api/assignment/page/:pageId/widget", reorderWidget);
 
-function sortingWidgets(req,res) {
+/*function sortingWidgets(req,res) {
     var startIndex = req.query.initial;
     var stopIndex = req.query.final;
     var pageId = req.params.pageId;
@@ -71,7 +71,18 @@ function sortingWidgets(req,res) {
     widgets = complete;
     res.json(widgets);
 }
-
+*/
+function reorderWidget(req, res){
+    var pageId = req.params['pageId'];
+    var startIndex = parseInt(req.query.initial);
+    var endIndex = parseInt(req.query.final);
+    widgetModel.reorderWidget(pageId, startIndex, endIndex)
+        .then(function (widget) {
+            res.json(widget);
+        }, function (error) {
+            res.sendStatus(500).send(error);
+        })
+}
 function findWidgetByPageId(req,res) {
      var pageId = req.params.pageId;
     widgetModel

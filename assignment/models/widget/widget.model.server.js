@@ -9,6 +9,7 @@ widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 widgetModel.deleteWidgetFromPage = deleteWidgetFromPage;
 widgetModel.findWidgetById = findWidgetById;
 widgetModel.updateWidget = updateWidget;
+widgetModel.reorderWidget= reorderWidget;
 
 module.exports = widgetModel;
 
@@ -24,13 +25,17 @@ function updateWidget(widgetId, newWidget) {
 
 function createWidgetForPage(pageId, widget) {
     widget._page = pageId;
-    return widgetModel
-        .create(widget)
-        .then(function (widget) {
-            pageModel
-                .addWidget(pageId, widget._id)
-            return widget;
-        });
+    return widgetModel.find({_page:pageId})
+        .then(function (widgets) {
+            widget.position = widgets.length;
+            return widgetModel.create(widget)
+                .then(function (widget) {
+                    pageModel
+                        .addWidget(pageId, widget._id)
+                    return widget;
+                });
+        })
+
 }
 
 function findAllWidgets() {
@@ -49,6 +54,30 @@ function deleteWidgetFromPage(pageId, widgetId) {
 function findAllWidgetsForPage(pageId) {
     return widgetModel
         .find({_page: pageId})
-        .populate('_page')
-        .exec();
+        .sort({position:1});
+}
+
+function reorderWidget(pageId, startIndex, endIndex){
+    return widgetModel.find({_page:pageId},function (err, widgets) {
+        widgets.forEach(function (widget) {
+            if (startIndex < endIndex) {
+                if(widget.position === startIndex){
+                    widget.position = endIndex;
+                    widget.save();
+                }
+                else if (widget.position > startIndex && widget.position <= endIndex) {
+                    widget.position = widget.position - 1;
+                }
+            } else {
+                if (widget.position === startIndex) {
+                    widget.position = endIndex;
+                    widget.save();
+                }
+                else if (widget.position < startIndex && widget.position >= endIndex) {
+                    widget.position = widget.position + 1;
+                    widget.save();
+                }
+            }
+        });
+    });
 }

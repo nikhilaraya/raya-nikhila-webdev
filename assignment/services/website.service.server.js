@@ -25,15 +25,6 @@ function findAllWebsitesForUser(req, res) {
         .then(function (websites) {
             res.json(websites);
         })
-    // var results = [];
-    //
-    // for(var v in websites) {
-    //     if(websites[v].developerId === req.params.userId) {
-    //         results.push(websites[v]);
-    //     }
-    // }
-    //
-    // res.json(results);
 }
 
 function createWebsite(req,res) {
