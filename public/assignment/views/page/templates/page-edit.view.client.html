@@ -8,7 +8,7 @@
             </a>
             <span class="fixed-top-header">Edit Page</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a ng-click="model.updatePage(model.pageId,model.page)" class="navbar-link">
+                <a ng-click="pageeditform.$valid && model.updatePage(model.pageId,model.page);submitted=true" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -63,20 +63,24 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
-
+            <form name="pageeditform" novalidate>
+                <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="model.page.name"
                    value="Blog Post"
-                   id="name"/>
-
+                   name="pname"
+                   id="name" required/></div>
+                <div ng-show="pageeditform.pname.$invalid && submitted" class="alert alert-danger">page name is required </div>
+                <div class="form-group">
             <label for="title">Title</label>
             <input id="title"
                    ng-model="model.page.title"
                       placeholder="Page title"
-                      class="form-control"></input>
+                   class="form-control"></input></div>
 
             <a ng-click="model.deletePage(model.pageId)" class="btn btn-block btn-danger">Delete</a>
+            </form>
         </div>
     </div>
 

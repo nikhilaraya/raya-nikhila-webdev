@@ -5,7 +5,7 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when('/user/:userId/website', {
+            .when('/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html',
                 controller: 'websiteListController',
                 controllerAs: 'model'
@@ -15,7 +15,7 @@
                 controller: 'websiteNewController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/website/:websiteId', {
+            .when('/website/:websiteId', {
                 templateUrl: 'views/website/templates/website-edit.view.client.html',
                 controller: 'websiteEditController',
                 controllerAs: 'model'

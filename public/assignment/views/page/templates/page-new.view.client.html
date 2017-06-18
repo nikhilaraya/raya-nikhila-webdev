@@ -60,19 +60,25 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
-
+            <form name="pagenewform" novalidate>
+                <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control"
                    ng-model="page.name"
                    placeholder="Page name"
-                   id="name"/>
-
+                   name="pname"
+                   required
+                   id="name" required/>
+                </div>
+                <div ng-show="pagenewform.pname.$invalid && submitted" class="alert alert-danger">page name is required </div>
+                <div class="form-group">
             <label for="title">Title</label>
             <input id="title"
                    ng-model="page.title"
                    placeholder="Page title"
                    class="form-control"></input>
-            <a ng-click="model.createPage(page)"
+                </div>
+            <a ng-click="pagenewform.$valid && model.createPage(page);submitted=true"
                class="btn btn-block btn-success">
                 Create
             </a>

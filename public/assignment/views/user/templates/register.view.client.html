@@ -9,31 +9,55 @@
     </div>
 </nav>
     <div class="container-fluid">
-        <div ng-show="model.error" class="alert alert-danger">
+        <!--div ng-show="model.error" class="alert alert-danger">
             {{model.error}}
-        </div>
-        <label for="username">Username</label>
-        <input type="text"
-               ng-model="username"
-               class="form-control"
-               id="username"
-               placeholder="Bob123"/>
+        </div-->
+
+        <form name="registerform" novalidate>
+            <div class="form-group">
+                <label for="username">Username</label>
+                    <input type="text"
+                         name="username"
+                           ng-model="username"
+                          class="form-control"
+                          id="username"
+                          placeholder="Bob123" required/>
+            </div>
+            <div ng-show="registerform.username.$invalid && registerform.$submitted"
+                 class="alert alert-danger">Username is required </div>
+
+            <div class="form-group">
         <label for="password">Password</label>
         <input type="password"
+               name="fpassword"
                ng-model="password"
                id="password"
                class="form-control"
-               placeholder="Qwerty1234"/>
+               placeholder="Qwerty1234" required/>
+            </div>
+            <div ng-show="registerform.fpassword.$invalid && registerform.$submitted"
+                 class="alert alert-danger">password is required </div>
+            <div class="form-group">
         <label for="reenter password">Re-enter Password</label>
         <input type="password"
+               name="rpassword"
                ng-model="password2"
                class="form-control"
                id="reenter password"
-               placeholder="Qwerty1234"/>
-        <a class="btn btn-primary btn-block"
-           ng-click="model.register(username, password, password2)">Register</a>
+               placeholder="Qwerty1234" required/>
+            </div>
+            <div ng-show="registerform.rpassword.$invalid && registerform.$submitted"
+                 class="alert alert-danger">password is required </div>
+
+            <div ng-if="registerform.rpassword.$valid && registerform.fpassword.$valid && registerform.fpassword.$viewValue!=registerform.rpassword.$viewValue"
+                 class="alert alert-danger" role="alert">
+                passwords dont match
+            </div>
+        <input type="submit" value="Register" class="btn btn-primary btn-block"
+           ng-click="model.register(username, password, password2)">
         <a class="btn btn-danger  btn-block"
            href="#!/login">Cancel</a>
+        </form>
     </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">

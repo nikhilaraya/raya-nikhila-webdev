@@ -1,5 +1,24 @@
 var app = require('../../express');
 var userModel = require('../models/user/user.model.server');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
+var bcrypt = require("bcrypt-nodejs");
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+/*var googleConfig = {
+    clientID     : '909983813107-a8uki3pkeajhcff653k1jes0v0an53oe.apps.googleusercontent.com',
+    clientSecret : '8nht77_nJzPDqZUgjulcCJub',
+    callbackURL  : 'http://localhost:3000/auth/google/callback'
+};*/
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
 var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -13,6 +32,48 @@ app.get ('/api/assignment/user', findUserByCredentials);
 app.post('/api/assignment/user', createUser);
 app.put ('/api/assignment/user/:userId', updateUser);
 app.delete ('/api/assignment/user/:userId', deleteUser);
+app.post  ('/api/assignment/login', passport.authenticate('local'), login);
+app.post  ('/api/assignment/logout', logout);
+app.post  ('/api/assignment/register', register);
+app.get   ('/api/assignment/loggedin', loggedin);
+app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/#!/profile',
+        failureRedirect: '/assignment/#!/login'
+    }));
+
+function loggedin(req, res) {
+    if(req.isAuthenticated()) {
+        res.json(req.user);
+    } else {
+        res.send('0');
+    }
+}
+
+function register(req, res) {
+    var userObj = req.body;
+    req.body.password=bcrypt.hashSync(req.body.password);
+    //user.password = bcrypt.hashSync(user.password);
+    userModel
+        .createUser(userObj)
+        .then(function (user) {
+            req
+                .login(user, function (status) {
+                    res.send(status);
+                });
+        });
+}
+
+
+function logout(req, res) {
+    req.logout();
+    res.sendStatus(200);
+}
+
+function login(req, res) {
+    res.json(req.user);
+}
 
 function deleteUser(req, res) {
     var userId = req.params.userId;
@@ -130,3 +191,78 @@ function findUserByCredentials(req, res) {
         //res.json(users);
     }
     }
+
+
+function serializeUser(user, done) {
+    console.log("in serialize");
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                console.log("in deserialize");
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+}
+
+function localStrategy(username, password, done) {
+    userModel
+        .findUserByUsername(username)
+        .then(function (user) {
+            console.log("error in bcrypt");
+            console.log(user);
+            console.log(user.password);
+            if(user && bcrypt.compareSync(password, user.password)) {
+                done(null, user);
+            } else {
+                done(null, false);
+            }
+        }, function (error) {
+            done(error, false);
+        });
+}
+
+function googleStrategy(token, refreshToken, profile, done) {
+    console.log(profile);
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}

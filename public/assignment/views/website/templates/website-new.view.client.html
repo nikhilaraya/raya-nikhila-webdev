@@ -2,13 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#!/user/{{model.userId}}/website" class="navbar-text pull-left fixed-top-header-arrow">
+            <a href="#!/website" class="navbar-text pull-left fixed-top-header-arrow">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
             <span class="fixed-top-header">New Website</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a href="#!/user/{{model.userId}}/website" class="navbar-link">
+                <a href="#!/website" class="navbar-link">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -62,20 +62,25 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
-
+            <form name="nwebsiteform" novalidate>
+                <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control"
+                   name="webName"
                    ng-model="website.name"
                    placeholder="name"
-                   id="name"/>
+                   id="name" required/>
+                </div>
+                <div ng-show="nwebsiteform.webName.$invalid && submitted"  class="alert alert-danger">website name is required </div>
 
-            <label for="description">Description</label>
+                <div class="form-group">
+                <label for="description">Description</label>
             <textarea id="description"
                       ng-model="website.description"
                       rows="5"
                       placeholder="description"
-                      class="form-control"></textarea>
-            <a ng-click="model.createWebsite(website)"
+                      class="form-control"></textarea></div>
+            <a ng-click="nwebsiteform.$valid && model.createWebsite(website);submitted=true"
                class="btn btn-block btn-success">
                 Create
             </a>
