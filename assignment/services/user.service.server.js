@@ -8,11 +8,7 @@ passport.deserializeUser(deserializeUser);
 var bcrypt = require("bcrypt-nodejs");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-/*var googleConfig = {
-    clientID     : '909983813107-a8uki3pkeajhcff653k1jes0v0an53oe.apps.googleusercontent.com',
-    clientSecret : '8nht77_nJzPDqZUgjulcCJub',
-    callbackURL  : 'http://localhost:3000/auth/google/callback'
-};*/
+
 var googleConfig = {
     clientID     : process.env.GOOGLE_CLIENT_ID,
     clientSecret : process.env.GOOGLE_CLIENT_SECRET,
