@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-text pull-left fixed-top-header-arrow">
+            <a href="#!/website/{{model.websiteId}}/page" class="navbar-text pull-left fixed-top-header-arrow">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
@@ -33,7 +33,7 @@
                             Accessed
                         </div>
                         <div class="col-xs-3">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                            <a href="#!/website/{{model.websiteId}}/page/new">
                                 <span class="glyphicon glyphicon-plus pull-right glyphicon-color"></span>
                             </a>
                         </div>
@@ -53,7 +53,7 @@
                             {{page.dateAccessed | date : "dd/MM"}}
                         </div>
                         <div class="col-xs-3">
-                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                            <a href="#!/website/{{model.websiteId}}/page/{{page._id}}">
                                 <span class="glyphicon glyphicon-cog pull-right"></span>
                             </a>
                         </div>

@@ -9,11 +9,11 @@ var pages =
         { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
     ];
 
-app.get("/api/assignment/user/:userId/website/:websiteId/page", findPagesByWebsiteId);
-app.get("/api/assignment/user/:userId/website/:websiteId/page/:pageId", findPageById);
-app.post("/api/assignment/user/:userId/website/:websiteId/page",createPage);
-app.delete ('/api/assignment/user/:userId/website/:websiteId/page/:pageId', deletePage);
-app.put ('/api/assignment/user/:userId/website/:websiteId/page/:pageId', updatePage);
+app.get("/api/assignment/website/:websiteId/page", findPagesByWebsiteId);
+app.get("/api/assignment/website/:websiteId/page/:pageId", findPageById);
+app.post("/api/assignment/website/:websiteId/page",createPage);
+app.delete ('/api/assignment/website/:websiteId/page/:pageId', deletePage);
+app.put ('/api/assignment/website/:websiteId/page/:pageId', updatePage);
 
 function findPagesByWebsiteId(req, res) {
     pageModel

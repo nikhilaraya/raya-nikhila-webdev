@@ -12,7 +12,7 @@
 
 
         function updatePage(userId,pageId,page){
-            var url = "/api/assignment/user/"+userId+"/website/"+page.websiteId+"/page/"+pageId;
+            var url = "/api/assignment/website/"+page.websiteId+"/page/"+pageId;
             return $http.put(url, page)
                 .then(function (response) {
                     return response.data;
@@ -20,7 +20,7 @@
         }
 
         function createPage(userId,page) {
-            var url = "/api/assignment/user/"+userId+"/website/"+page.websiteId+"/page";
+            var url = "/api/assignment/website/"+page.websiteId+"/page";
             return $http.post(url, page)
                 .then(function (response) {
                     return response.data;
@@ -29,7 +29,7 @@
         }
 
         function deletePage(userId,websiteId,pageId) {
-            var url = "/api/assignment/user/"+userId+"/website/"+websiteId+"/page/"+pageId;
+            var url = "/api/assignment/website/"+websiteId+"/page/"+pageId;
             return $http.delete(url, pageId)
                 .then(function (response) {
                     return response.data;
@@ -37,7 +37,7 @@
         }
 
         function findPageById(userId,websiteId,pageId) {
-            var url = "/api/assignment/user/"+userId+"/website/"+websiteId+"/page/"+pageId;
+            var url = "/api/assignment/website/"+websiteId+"/page/"+pageId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -45,7 +45,7 @@
         }
 
         function findPageByWebsiteId(userId,websiteId) {
-            var url = "/api/assignment/user/"+userId+"/website/"+websiteId+"/page";
+            var url = "/api/assignment/website/"+websiteId+"/page";
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

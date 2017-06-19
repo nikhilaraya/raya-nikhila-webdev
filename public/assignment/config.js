@@ -50,20 +50,29 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/user/:userId/website/:websiteId/page', {
+            .when('/website/:websiteId/page', {
                 templateUrl: 'views/page/templates/page-list.view.client.html',
                 controller: 'pageListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId/page/new', {
+            .when('/website/:websiteId/page/new', {
                 templateUrl: 'views/page/templates/page-new.view.client.html',
                 controller: 'pageNewController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId', {
+            .when('/website/:websiteId/page/:pageId', {
                 templateUrl: 'views/page/templates/page-edit.view.client.html',
                 controller: 'pageEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',

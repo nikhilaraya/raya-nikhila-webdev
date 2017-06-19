@@ -2,13 +2,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#!/user/{{model.userId}}/website" class="navbar-text pull-left fixed-top-header-arrow">
+            <a href="#!/website" class="navbar-text pull-left fixed-top-header-arrow">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
             </a>
             <span class="fixed-top-header">Pages</span>
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link ">
+                <a href="#!/website/{{model.websiteId}}/page/new" class="navbar-link ">
           <span class="glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -51,7 +51,7 @@
                     {{page.dateAccessed | date : "dd MMM"}}
                 </div>
                 <div class="col-xs-3">
-                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                    <a href="#!/website/{{model.websiteId}}/page/{{page._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -63,7 +63,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <p class="navbar-text pull-right fixed-top-header-arrow">
-                <a href="#!/user/{{model.userId}}" class="navbar-link">
+                <a href="#!/profile" class="navbar-link">
                     <span class="glyphicon glyphicon-user">
                     </span>
                 </a>
