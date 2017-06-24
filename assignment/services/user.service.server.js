@@ -33,6 +33,7 @@ app.post  ('/api/assignment/logout', logout);
 app.post  ('/api/assignment/register', register);
 app.get   ('/api/assignment/loggedin', loggedin);
 app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
 app.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: '/assignment/#!/profile',
@@ -190,7 +191,6 @@ function findUserByCredentials(req, res) {
 
 
 function serializeUser(user, done) {
-    console.log("in serialize");
     done(null, user);
 }
 
@@ -199,7 +199,6 @@ function deserializeUser(user, done) {
         .findUserById(user._id)
         .then(
             function(user){
-                console.log("in deserialize");
                 done(null, user);
             },
             function(err){
@@ -262,3 +261,4 @@ function googleStrategy(token, refreshToken, profile, done) {
             }
         );
 }
+

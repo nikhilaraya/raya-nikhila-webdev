@@ -1,30 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
-</head>
-<body>
-    <h1>Web Dev Home Page</h1>
+    <meta charset="utf-8">
+    <title>Nikhila Raya</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <p>
-        Customize this home page to your linking.
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/media-queries.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <script src="js/modernizr.js"></script>
+
+</head>
+
+<body>
+
+<!-- Header
+================================================== -->
+<header id="home">
+
+    <nav id="nav-wrap">
+
+        <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+        <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+        <ul id="nav" class="nav">
+            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
+            <li><a class="smoothscroll" href="#testimonials">About</a></li>
+            <li><a class="smoothscroll" href="#projects">Project</a></li>
+        </ul> <!-- end #nav -->
+
+    </nav> <!-- end #nav-wrap -->
+
+    <div class="row banner">
+        <div class="banner-text">
+            <h1 class="responsive-headline">Nikhila Raya.</h1>
+            <h3>Computer Science Graduate Student,Northeastern University. </h3>
+            <hr />
+            <ul class="social">
+                <li><a href="https://www.facebook.com/nikhila.raya"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/nikhila-raya-295264125"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="http://instagram.com/nikhilaraya"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="scrolldown">
+        <a class="smoothscroll" href="#testimonials"><i class="icon-down-circle"></i></a>
     </p>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html#/home">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/jannunzi/web-dev-template">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+</header> <!-- Header End -->
+
+
+<section id="testimonials">
+ <div class="text-container">
+<div class="row">
+
+            <div class="two columns header-col">
+
+                <h1><span>Client Testimonials</span></h1>
+
+            </div>
+
+            <div class="ten columns flex-container">
+
+                <div class="flexslider">
+
+                    <ul class="slides">
+
+                        <li>
+                            <blockquote>
+                                <p>I'm currently pursuing Master's in Computer Science at Northeastern University,Boston
+                                    My area of interests include Software Development, Databases and Web Development.
+                                </p>
+
+                            </blockquote>
+                        </li> <!-- slide ends -->
+
+                        <li>
+                            <blockquote>
+                                <p>Apart from the professional front, I keep myself busy while reading, traveling around, listening to music and trying new recipes.
+                                    I'm always open to grasp new things that come in the way and be as diverse as possible.
+                                </p>
+                            </blockquote>
+                        </li> <!-- slide ends -->
+
+                    </ul>
+
+                </div> <!-- div.flexslider ends -->
+
+            </div> <!-- div.flex-container ends -->
+
+        </div> <!-- row ends -->
+
+    </div>  <!-- text-container ends -->
+
+</section> <!-- Testimonials Section End-->
+
+
+
+<!-- Resume Section
+================================================== -->
+
+
+<section id="projects">
+    <div style="background-color: black;">
+        <div class="container row skill" >
+            <div class="row banner">
+                <div class="banner-text text-center">
+                    <h2 class="responsive-headline" style="color:#11abb0;margin:20px;">Projects</h2>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="four columns  text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-file-text wow bounceIn"></i>
+                        <h3><a href="https://webd-summer-2017.herokuapp.com/assignment/index.html#!/">Website Maker</a></h3>
+                        <p style="color:white;">It is used to create online websites. Developed using HTML5, CSS3, Bootstrap, AngularJS and Node.js and MongoDB.</p>
+                    </div>
+                </div>
+
+                <div class="four columns text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-git-square wow bounceIn" data-wow-delay=".1s"></i>
+                        <h3><a href="https://github.com/nikhilaraya">GitHub</a></h3>
+                        <p style="color:white;">My public git repository</p>
+                    </div>
+                </div>
+                <div class="four columns  text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-film wow bounceIn" data-wow-delay=".1s"></i>
+                        <h3><a href="https://webdev-movies-project.herokuapp.com/project/index.html#">Filmflix</a></h3>
+                        <p style="color:white;">The website allows users to search for movies, rate and review movies and follow other users.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Popup
+ --------------------------------------------------------------- -->
+
+
+
+<!-- Call-To-Action Section
+================================================== -->
+
+
+<!-- Testimonials Section
+================================================== -->
+
+
+
+
+<!-- Java Script
+================================================== -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="js/jquery.flexslider.js"></script>
+<script src="js/waypoints.js"></script>
+<script src="js/jquery.fittext.js"></script>
+<script src="js/magnific-popup.js"></script>
+<script src="js/init.js"></script>
+
 </body>
+
 </html>

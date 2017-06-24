@@ -2,7 +2,7 @@
  * Created by manog on 09-12-2016.
  */
 /*
- * File: jquery.flexisel.js
+ * File: jquery.flexisel.jquery
  * Version: 1.0.0
  * Description: Responsive carousel jQuery plugin
  * Author: 9bit Studios
