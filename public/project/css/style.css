@@ -10,7 +10,10 @@
     font-size: 25px;
     color: white;
 }
-
+.imageWidth{
+    width : 180px !important;
+    height : 150px !important;
+}
 
 /* Mobile */
 @media (max-width: 767px) {
